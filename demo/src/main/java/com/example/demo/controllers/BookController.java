@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -15,13 +16,13 @@ public class BookController {
     @Autowired
     private final BookService bookService;
 
-    @PutMapping(value="/search-book/{subTitle}")
-    public List searchBook(@PathVariable String subTitle) {
+    @GetMapping(value="/search-book/{subTitle}")
+    public HashMap<String, Integer> searchBook(@PathVariable String subTitle) {
         return bookService.searchBook(subTitle);
     }
 
     /*
-    @PutMapping(value="search-location")
+    @GetMapping(value="search-location")
     public List searchLocation(@PathVariable String bookId) {
         return bookService.searchLocation();
     }*/

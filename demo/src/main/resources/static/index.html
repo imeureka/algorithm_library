@@ -2,18 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="js/libs/jQuery/jquery-3.6.1.js" type="text/javascript"></script>
-    <script src="js/libs/jsRender/jsrender.js" type="text/javascript"></script>
+
 
     <title>Title</title>
+    <style>
+        #userBox{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
     <script inline="javascript" type="text/javascript">
         'use strict';
-        (function($){\
 
-            $(document).ready(function(){
-
-            });
-        }(jQuery));
+        // $(document).ready(function () {
+        //     $("button[name='keywor']").click(function () {
+        //         alert("ddd");
+        //         $.ajax({
+        //             type: "GET",
+        //             url: "/api/search-book/" + $("input[name=keyword]").val()
+        //             , success: function(resultData) {
+        //                 var json = "<h4>Ajax Response</h4><pre>"
+        //                     + JSON.stringify(resultData, null, 4) + "</pre>";
+        //                 $('#feedback').html(json);
+        //
+        //                 // alert(resultData.msg);
+        //                 // location.replace("/index.html");
+        //             }
+        //         });
+        //     });
+        // });
 
     </script>
 </head>
@@ -30,10 +47,68 @@
                 <label>검색어</label>
                 <input type="text" class="form-control" id="keyword" placeholder="검색어를 입력하세요">
             </div>
-            <button class="btn btn-outline-warning" id="btn-retrieval-book" type="submit">조회</button>
+            <button class="btn btn-outline-warning" id="btnB" type="submit" name="keywor" onclick="getUser(); return false;">조회</button>
+            <div id="userBox"></div>
         </form>
+
     </div>
 </section>
+<script>
+
+    let name = document.getElementById('keyword').value;
+
+    function getUser(){
+        const config = {
+            method : "get"
+        };
+        let name = document.getElementById('keyword').value;
+        fetch("api/search-book/" + name, config)
+            .then(response => response.json())
+            .then(data =>
+                //data.map(book => {
+                    console.log(data),
+
+                //const name = document.createElement("div");
+                //name.textContent = book.bookTitle;
+                //const userInfo = document.getElementById("userBox");
+                //userInfo.appendChild(name);
+            //}))
+        )
+            .catch(error => console.log(error));
+    }
+
+    // function getUser2(){
+    //     fetch("api/search-book/" + "제목")
+    //         .then(res =>{
+    //             return res.json();
+    //         })
+    //         .then(data =>{
+    //             const info = document.createElement("div");
+    //             info.textContent = data.map((data) => data.bookTitle);
+    //             userBox.appendChild(info);
+    //
+    //         })
+    //         .catch(err =>{
+    //             console.log('Fetch Error', err);
+    //         })
+    // }
+
+    // getUser().then((datas)=>{
+    //    display(datas);
+    // })
+    // function display(datas){
+    //     const container = document.querySelector(".datas");
+    //     container.innerHTML = datas.map((data)=> createHTMLString(data)).join("");
+    // }
+    //
+    // function createHTMLString(data){
+    //     return`
+    //     <li class="item">
+    //         <span class="dd">${data.bookTitle}</span>
+    //     </li>`;
+    // }
+
+</script>
 
 </body>
 </html>

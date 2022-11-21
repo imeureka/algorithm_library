@@ -22,8 +22,8 @@ public class Book {
     private String publisher; // 출판사
     @Column(name = "year")
     private int year; // 출판년도
-    @Column(name = "regitser_id", length = 50)
-    private String regitser_id; // 등록번호
+    @Column(name = "registser_id", length = 50)
+    private String registser_id; // 등록번호
     @Id // PK 고유한 값
     @Column(name = "book_id", length = 50)
     private String book_id; // 청구기호
@@ -36,7 +36,7 @@ public class Book {
         this.auther = auther;
         this.publisher = publisher;
         this.year = year;
-        this.regitser_id = regitser_id;
+        this.registser_id = registser_id;
         this.book_id = book_id;
         this.room = room;
     }

@@ -21,7 +21,7 @@ public class BookListDto {
         this.auther = entity.getAuther();
         this.publisher = entity.getPublisher();
         this.year = entity.getYear();
-        this.regitser_id = entity.getRegitser_id();
+        this.regitser_id = entity.getRegistser_id();
         this.book_id = entity.getBook_id();
         this.room = entity.getRoom();
     }
