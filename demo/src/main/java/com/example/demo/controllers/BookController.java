@@ -1,4 +1,5 @@
 package com.example.demo.controllers;
+import com.example.demo.models.Book;
 import com.example.demo.services.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping(value="/search-book/{subTitle}")
-    public HashMap<String, Integer> searchBook(@PathVariable String subTitle) {
+    public List<Book> searchBook(@PathVariable String subTitle) {
         return bookService.searchBook(subTitle);
     }
 

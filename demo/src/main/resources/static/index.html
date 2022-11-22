@@ -7,7 +7,7 @@
     <title>Title</title>
     <style>
         #userBox{
-            width: 300px;
+            width: 100%;
             height: 300px;
         }
     </style>
@@ -64,16 +64,39 @@
         let name = document.getElementById('keyword').value;
         fetch("api/search-book/" + name, config)
             .then(response => response.json())
-            .then(data =>
-                //data.map(book => {
-                    console.log(data),
 
-                //const name = document.createElement("div");
-                //name.textContent = book.bookTitle;
-                //const userInfo = document.getElementById("userBox");
-                //userInfo.appendChild(name);
-            //}))
+            .then(data =>
+                data.map(book => {
+                    console.log(data)
+                const name = document.createElement("div");
+                name.textContent = book.bookTitle +book.auther +book.publisher;
+                const userInfo = document.getElementById("userBox");
+                userInfo.appendChild(name);
+            })
         )
+            .then(data => {
+                console.log(data);
+                // data.map(book => {
+                //     const name = document.createElement("div");
+                //     name.textContent = book.subTitle;
+                //     const userInfo = document.getElementById("userBox");
+                //     userInfo.appendChild(name);
+                // })
+            })
+                    // .then(data =>{
+                    //     const info = document.createElement("div");
+                    //     info.textContent = data.map((data) => data.subTitle);
+                    //     userBox.appendChild(info);
+                    //
+                    // })
+
+            // .then(data => {
+            //     const name = document.createElement("div");
+            //     name.textContent = data.data;
+            //     const userInfo = document.getElementById("userBox");
+            //     userInfo.appendChild(name);
+            // })
+
             .catch(error => console.log(error));
     }
 

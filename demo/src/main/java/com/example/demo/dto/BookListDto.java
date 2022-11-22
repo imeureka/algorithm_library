@@ -11,7 +11,7 @@ public class BookListDto {
     private String bookTitle;
     private String auther; // 저자
     private String publisher; // 출판사
-    private int year; // 출판년도
+    private String year; // 출판년도
     private String regitser_id; // 등록번호
     private String book_id; // 청구기호
     private String room; // 자료실
