@@ -24,7 +24,7 @@ public class BookController {
 
 
     @GetMapping(value="search-location/{bookId}/{room}")
-    public List searchLocation(@PathVariable String bookId, String room) {
+    public List searchLocation(@PathVariable String bookId, @PathVariable String room) {
         return bookService.searchLocation(bookId, room);
     }
 }

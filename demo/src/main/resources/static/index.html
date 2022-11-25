@@ -179,7 +179,7 @@
 
 
             <div class="location_modal">
-                <button class="forLocation" onclick="getUser2()">위치 찾기</button>
+                <button class="forLocation" onclick="location.href='/library.html'">위치 찾기</button>
             </div>
             <div class="footer_modal"></div>
         </div>
@@ -196,21 +196,21 @@
     let i =0;
     let bookId = document.getElementById('bT').value;
     let rod = document.getElementById('room').value;
-    function getUser2( ){
-        // location.href = "/library.html";
-        const config = {
-            method : "get"
-        };
-        var bookId = document.getElementById('bT').value;
-        console.log('hi'+ bookId);
-        var rod = document.getElementById('room').value;
-        fetch("api/search-location/" + "813.6고567ㄴ" + "/" +"종합자료실", config)
-            .then(response => response.json())
-            .then(data2 =>{
-                console.log(data2);
-                //location.href = "/library.html";
-            })
-    }
+    // function getUser2( ){
+    //     // location.href = "/library.html";
+    //     const config = {
+    //         method : "get"
+    //     };
+    //     var bookId = document.getElementById('bT').value;
+    //     console.log('hi'+ bookId);
+    //     var rod = document.getElementById('room').value;
+    //     fetch("api/search-location/" + "813.6 고567ㄴ/"  + "종합자료실", config)
+    //         .then(response => response.json())
+    //         .then(data2 =>{
+    //             console.log(data2);
+    //             location.href = "/library.html";
+    //         })
+    // }
 
 
     function getUser(){
@@ -260,14 +260,6 @@
 
     function modalB(a, room_a,i){
          document.getElementById("modalBook").style.display = 'block';
-      //  const bt = document.getElementById('bT');
-      //  const ro = document.getElementById('room');
-       // bt.textContent = a[3] ;
-       // ro.textContent = room_a[3];
-        //let conso = document.getElementById('bT').value;
-       // console.log(conso);
-
-
     }
 
 </script>

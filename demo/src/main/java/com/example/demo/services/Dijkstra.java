@@ -78,18 +78,18 @@ public class Dijkstra {
     public static int getLocation(String bookNumber, String reference_Room) { // arg : String[] classifyNum, String reference_room
 
         String[] book = bookNumber.split("\\s+");
-        int bookIndex = Integer.parseInt(book[0]);
+        double bookIndex = Double.parseDouble(book[0]);
 
         if (reference_Room.equals("종합자료실")) {
             bookIndex = bookIndex / 10;
             if (bookIndex == 0)
                 bookIndex = 1;
-            return bookIndex;
+            return (int)bookIndex;
         } else {
             bookIndex = bookIndex / 10;
             if (bookIndex == 0)
                 bookIndex = 1;
-            return bookIndex + 100;
+            return (int)bookIndex + 100;
         }
 
         //int idx = 845;

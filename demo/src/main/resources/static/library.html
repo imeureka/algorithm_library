@@ -5,8 +5,60 @@
     <title>Title</title>
 </head>
 <body>
-<button onclick="table_make()">테이블 만들기 </button>
+<button onclick="getUser2()">테이블 만들기 </button>
 <script>
+    function getUser2( ){
+        // location.href = "/library.html";
+        const config = {
+            method : "get"
+        };
+        // var bookId = document.getElementById('bT').value;
+        // console.log('hi'+ bookId);
+        // var rod = document.getElementById('room').value;
+        fetch("api/search-location/" + "813.6 고567ㄴ/"  + "종합자료실", config)
+            .then(response => response.json())
+            .then(data2 =>{
+                console.log(data2);
+                console.log('hi');
+                console.log(data2[3]);
+
+               var str =  data2[3].split(' ');
+                console.log(str);
+                var row = 19;
+                var col = 21;
+
+                var count = 1;
+                for (var i = 0; i < row.length; i++) {
+                    console.log(row[i].length);
+                    for (var j = 0; j < col.length; j++) {
+                    }
+                }
+
+                document.write("<table border='1px;'>")
+                for (var i = 0; i < row; i++) {
+                    document.write("<tr  class='hello' height='50px'>");
+                    for (var j = 1; j <= col; j++) {
+                        hey2();
+
+                        if (i == parseInt(str[0])) {
+                            if (j == parseInt(str[1]) + 1) {
+                                document.write("<img src = '/img/xsolid.svg'>")
+
+                            }
+                        }
+                        document.write("<td class ='tdd' width='50px'>");
+                        document.write(i + ',' + j);
+                        count++;
+                    }
+                }
+
+                document.write("</td>")
+                document.write("</tr>")
+                document.write("</table>")
+                hey();
+
+            })
+    }
 
     function table_make() {
 
