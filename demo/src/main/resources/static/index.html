@@ -5,32 +5,136 @@
 
 
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <style>
         #userBox{
             width: 100%;
             height: 300px;
         }
+        body{
+        background: url("/img/gachon_Back.png") no-repeat center center fixed;
+            background-size: cover;
+        }
+        button{
+            right: 390px;
+            border: none;
+            width: 50px;
+            position: absolute;
+            border-radius: 10px;
+        }
+        button:hover{
+            color: white;
+            box-shadow:-200px 0 0 0 rgba(56, 83, 190, 0.5) inset;
+        }
+
+        .formC{
+            display: flex;
+            position: relative;
+        }
+        .container{
+            display: block;
+        }
+
+        .search {
+            position: relative;
+            width: 50%;
+            left: 49%;
+            transform: translateX(-50%);
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid #1f55ff;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        img {
+            position: absolute;
+            width: 17px;
+            top: 10px;
+            margin: 0;
+            left: 100%;
+        }
+        .jumbotron{
+            position: relative;
+        }
+        .iconGachon{
+            width: 100px;
+            margin-left: 45%;
+            position: static;
+        }
+        .headerIcon{
+            width: 50px;
+        }
+        .test{
+        background-color: #ffffff;
+            margin: 0 auto;
+            padding: 5px;
+            margin-top: 10px;
+            width: 50%;
+            border: 2px solid #ced7ff;
+        }
+        .modalBook{
+            width: 40%;
+            height: 75%;
+            top: 14%;
+            border-radius: 20px;
+            transform: translateX(-50%);
+            position: absolute;
+            background-color: #f7fcff;
+            left: 50%;
+            display: none;
+        }
+        .header_modal{
+            background-color: #3b4377;
+            /* position: relative; */
+            /* display: flex; */
+            /* width: 100%; */
+            height: 10%;
+        }
+        img.bookTitle{
+            position: relative;
+            width: 150px;
+            left: 65%;
+            /* margin: 0 auto; */
+            top: 39%;
+        }
+        .main_modal{
+            display: flex;
+        }
+        .img_main{
+            position: relative;
+        }
+        .explain{
+            left: 28%;
+            top: 40px;
+            position: relative;
+        }
+        .bT{
+            width: 280px;
+        }
+        button.forLocation{
+            height: 30px;
+            width: 100px;
+            position: absolute;
+            right: 22px;
+            bottom: 30px;
+        }
+        .xIcon{
+            position: absolute;
+            right: 0;
+            top: 3%;
+            left: 95%;
+        }
+        .explain p {
+            line-height: 7px;
+        }
     </style>
     <script inline="javascript" type="text/javascript">
         'use strict';
 
-        // $(document).ready(function () {
-        //     $("button[name='keywor']").click(function () {
-        //         alert("ddd");
-        //         $.ajax({
-        //             type: "GET",
-        //             url: "/api/search-book/" + $("input[name=keyword]").val()
-        //             , success: function(resultData) {
-        //                 var json = "<h4>Ajax Response</h4><pre>"
-        //                     + JSON.stringify(resultData, null, 4) + "</pre>";
-        //                 $('#feedback').html(json);
-        //
-        //                 // alert(resultData.msg);
-        //                 // location.replace("/index.html");
-        //             }
-        //         });
-        //     });
-        // });
 
     </script>
 </head>
@@ -39,25 +143,68 @@
 
     <div id="div-retrieval-book" class="container">
         <div class="jumbotron">
-            <h4>도서 검색</h4>
+            <img class="iconGachon" src="https://yt3.ggpht.com/j-1Ysu5F8YhCvcI5O-3wjqGUGzFWHMyNzIxUO1jK76XOX2-0Hg8Wt4n9uas1C20du3XN6EheRw=s900-c-k-c0x00ffffff-no-rj">
         </div>
 
-        <form>
-            <div class="form-group">
-                <label>검색어</label>
-                <input type="text" class="form-control" id="keyword" placeholder="검색어를 입력하세요">
+        <form class="formC">
+<!--            <button class="btn-hover color-4" id="btnB" type="submit" name="keywor" onclick="getUser(); return false;">조회</button>-->
+            <div class="search">
+                <input type="text"  class="form-control" id="keyword" placeholder="검색어 입력">
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" type="submit" name="keywor" onclick="getUser(); return false;">
             </div>
-            <button class="btn btn-outline-warning" id="btnB" type="submit" name="keywor" onclick="getUser(); return false;">조회</button>
-            <div id="userBox"></div>
         </form>
 
+        <div id="userBox"></div>
+
+        <div class="modalBook" id="modalBook">
+            <div class="header_modal">
+                <img src="/img/xsolid.svg" class="xIcon">
+            </div>
+            <div class="main_modal">
+                <div class="img_main">
+                    <img class="bookTitle" src="/img/book_solid.svg">
+                </div>
+               <div class="explain">
+                   <h1 class="bT" id="bT"></h1>
+                   <p class="explain_autor">저자 : 해피 윌슨</p>
+                   <p  class="explain_pub">출판사 : 해피인더 원들</p>
+                   <p  class="explain_yeah">출판년도 : 2001 </p>
+                   <p  class="explain_room" id="room">자료실 : 어린이 자료실</p>
+               </div>
+
+            </div>
+
+
+
+
+            <div class="location_modal">
+                <button class="forLocation" onclick="getUser2()">위치 찾기</button>
+            </div>
+            <div class="footer_modal"></div>
+        </div>
     </div>
 </section>
 <script>
 
     let name = document.getElementById('keyword').value;
 
+    let bookId = document.getElementById('bT').value;
+    let room = document.getElementById('room').value;
+
+    a=new Array();
+    let i =0;
+    function getUser2(){
+        const config = {
+            method : "get"
+        };
+        let bt2 = document.getElementById('bT').value;
+        fetch("api/search-location/" + bookId + room, config)
+            .then(response => response.json())
+    }
+
+
     function getUser(){
+
         const config = {
             method : "get"
         };
@@ -69,67 +216,42 @@
                 data.map(book => {
                     console.log(data)
                 const name = document.createElement("div");
-                name.textContent = book.bookTitle +book.auther +book.publisher;
+                    name.className = 'test';
+
+                    for(i;i<150;i++){
+                        name.innerHTML = book.bookTitle + '<br/>' + '저자 : ' +book.auther + ' 출판사 : ' +book.publisher + '<button onclick="modalB(a,i)">조회</button>';
+                        a.push(book.book_id);
+                        i++;
+                        break;
+                    }
+
+
+                // a.push(book.auther);
+                // a.push(book.publisher);
+                console.log(a);
                 const userInfo = document.getElementById("userBox");
                 userInfo.appendChild(name);
+                    function modalB(){
+                        const bt = document.getElementById('bT');
+                        bt.textContent = book.bookTitle ;
+
+                    }
+                    // userInfo.appendChild(btn);
             })
         )
-            .then(data => {
-                console.log(data);
-                // data.map(book => {
-                //     const name = document.createElement("div");
-                //     name.textContent = book.subTitle;
-                //     const userInfo = document.getElementById("userBox");
-                //     userInfo.appendChild(name);
-                // })
-            })
-                    // .then(data =>{
-                    //     const info = document.createElement("div");
-                    //     info.textContent = data.map((data) => data.subTitle);
-                    //     userBox.appendChild(info);
-                    //
-                    // })
-
             // .then(data => {
-            //     const name = document.createElement("div");
-            //     name.textContent = data.data;
-            //     const userInfo = document.getElementById("userBox");
-            //     userInfo.appendChild(name);
+            //     console.log(data);
             // })
 
             .catch(error => console.log(error));
     }
 
-    // function getUser2(){
-    //     fetch("api/search-book/" + "제목")
-    //         .then(res =>{
-    //             return res.json();
-    //         })
-    //         .then(data =>{
-    //             const info = document.createElement("div");
-    //             info.textContent = data.map((data) => data.bookTitle);
-    //             userBox.appendChild(info);
-    //
-    //         })
-    //         .catch(err =>{
-    //             console.log('Fetch Error', err);
-    //         })
-    // }
+    function modalB(a, i){
+         document.getElementById("modalBook").style.display = 'block';
+        const bt = document.getElementById('bT');
+        bt.textContent = a[3] ;
 
-    // getUser().then((datas)=>{
-    //    display(datas);
-    // })
-    // function display(datas){
-    //     const container = document.querySelector(".datas");
-    //     container.innerHTML = datas.map((data)=> createHTMLString(data)).join("");
-    // }
-    //
-    // function createHTMLString(data){
-    //     return`
-    //     <li class="item">
-    //         <span class="dd">${data.bookTitle}</span>
-    //     </li>`;
-    // }
+    }
 
 </script>
 

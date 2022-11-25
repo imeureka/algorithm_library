@@ -90,7 +90,7 @@ public class Search
                     for(int j = 0; j < index2; j++)
                     {
                         int val = -1;
-                        if (seq.charAt(i) == book.charAt(j))
+                        if (seq.charAt(i) == book.charAt(j % 8))
                         {
                             if (i == 0 || j == 0)
                             {

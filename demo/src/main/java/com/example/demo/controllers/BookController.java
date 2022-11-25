@@ -22,9 +22,9 @@ public class BookController {
         return bookService.searchBook(subTitle);
     }
 
-    /*
-    @GetMapping(value="search-location")
-    public List searchLocation(@PathVariable String bookId) {
-        return bookService.searchLocation();
-    }*/
+
+    @GetMapping(value="search-location/{bookId}/{room}")
+    public List searchLocation(@PathVariable String bookId, String room) {
+        return bookService.searchLocation(bookId, room);
+    }
 }
