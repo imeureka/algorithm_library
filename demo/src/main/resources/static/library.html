@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="table_make()">테이블 만들기 </button>
+<script>
+
+    function table_make() {
+
+
+                var row = 19;
+                var col = 21;
+
+                var count = 1;
+                for (var i = 0; i < row.length; i++) {
+                    console.log(row[i].length);
+                    for (var j = 0; j < col.length; j++) {
+                    }
+                }
+
+                document.write("<table border='1px;'>")
+                for (var i = 0; i < row; i++) {
+                    document.write("<tr  class='hello' height='50px'>");
+                    for (var j = 1; j <= col; j++) {
+                        hey2();
+
+                        if (i == 0) {
+                            if (j == 21 + 1) {
+                                document.write("<img src = '/img/xsolid.svg'>")
+
+                            }
+                        }
+                        document.write("<td class ='tdd' width='50px'>");
+                        document.write(i + ',' + j);
+                        count++;
+                    }
+                }
+
+                document.write("</td>")
+                document.write("</tr>")
+                document.write("</table>")
+                hey();
+
+            }
+
+
+function hey(){
+
+        // .getElementsByClassName not .getElementByClass
+        var cls = document.getElementsByClassName("tdd"),
+            // set the stopping point DYNAMICALLY
+            len = cls.length,
+            // start the index at 0;
+            n = 0;
+        for (; n < len; n++) {
+            cls[n].id = "tdd_" + (n + 1);
+
+        }
+    make();
+    };
+
+    function hey2(){
+
+        // .getElementsByClassName not .getElementByClass
+        var cls = document.getElementsByClassName("hello"),
+            // set the stopping point DYNAMICALLY
+            len = cls.length,
+            // start the index at 0;
+            n = 0;
+        for (; n < len; n++) {
+            cls[n].id = "hello_" + (n + 1);
+
+        }
+
+    }
+
+    function make(){
+        var name = document.getElementById('tdd_2');
+        name.textContent="it's me";
+    }
+function heee(i,j){
+        if(i==6){
+            if(j==4){
+                var name = document.getElementById('tdd_2');
+                name.textContent="it's me";
+            }
+        }
+}
+
+
+</script>
+</body>
+</html>

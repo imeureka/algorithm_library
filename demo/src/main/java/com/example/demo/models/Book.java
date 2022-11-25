@@ -23,10 +23,10 @@ public class Book {
     @Column(name = "year")
     private String year; // 출판년도
     @Column(name = "registser_id", length = 50)
-    private String registser_id; // 등록번호
+    private String registser_id; // 청구번호
     @Id // PK 고유한 값
     @Column(name = "book_id", length = 50)
-    private String book_id; // 청구기호
+    private String book_id; // 등록번호
     @Column(name = "room", length = 50)
     private String room; // 자료실
 

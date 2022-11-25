@@ -146,6 +146,7 @@
             <img class="iconGachon" src="https://yt3.ggpht.com/j-1Ysu5F8YhCvcI5O-3wjqGUGzFWHMyNzIxUO1jK76XOX2-0Hg8Wt4n9uas1C20du3XN6EheRw=s900-c-k-c0x00ffffff-no-rj">
         </div>
 
+
         <form class="formC">
 <!--            <button class="btn-hover color-4" id="btnB" type="submit" name="keywor" onclick="getUser(); return false;">조회</button>-->
             <div class="search">
@@ -165,11 +166,11 @@
                     <img class="bookTitle" src="/img/book_solid.svg">
                 </div>
                <div class="explain">
-                   <h1 class="bT" id="bT"></h1>
+                   <h1 class="bT" id="bT">813.6 고567ㄴ</h1>
                    <p class="explain_autor">저자 : 해피 윌슨</p>
                    <p  class="explain_pub">출판사 : 해피인더 원들</p>
                    <p  class="explain_yeah">출판년도 : 2001 </p>
-                   <p  class="explain_room" id="room">자료실 : 어린이 자료실</p>
+                   <p  class="explain_room" id="room">종합자료실</p>
                </div>
 
             </div>
@@ -188,18 +189,27 @@
 
     let name = document.getElementById('keyword').value;
 
-    let bookId = document.getElementById('bT').value;
-    let room = document.getElementById('room').value;
+
 
     a=new Array();
+    room_a= new Array();
     let i =0;
-    function getUser2(){
+    let bookId = document.getElementById('bT').value;
+    let rod = document.getElementById('room').value;
+    function getUser2( ){
+        // location.href = "/library.html";
         const config = {
             method : "get"
         };
-        let bt2 = document.getElementById('bT').value;
-        fetch("api/search-location/" + bookId + room, config)
+        var bookId = document.getElementById('bT').value;
+        console.log('hi'+ bookId);
+        var rod = document.getElementById('room').value;
+        fetch("api/search-location/" + "813.6고567ㄴ" + "/" +"종합자료실", config)
             .then(response => response.json())
+            .then(data2 =>{
+                console.log(data2);
+                //location.href = "/library.html";
+            })
     }
 
 
@@ -209,6 +219,7 @@
             method : "get"
         };
         let name = document.getElementById('keyword').value;
+        console.log(name);
         fetch("api/search-book/" + name, config)
             .then(response => response.json())
 
@@ -219,8 +230,9 @@
                     name.className = 'test';
 
                     for(i;i<150;i++){
-                        name.innerHTML = book.bookTitle + '<br/>' + '저자 : ' +book.auther + ' 출판사 : ' +book.publisher + '<button onclick="modalB(a,i)">조회</button>';
+                        name.innerHTML = book.bookTitle + '<br/>' + '저자 : ' +book.auther + ' 출판사 : ' +book.publisher + '<button onclick="modalB(a,room_a,i)">조회</button>';
                         a.push(book.book_id);
+                        room_a.push(book.room);
                         i++;
                         break;
                     }
@@ -246,10 +258,15 @@
             .catch(error => console.log(error));
     }
 
-    function modalB(a, i){
+    function modalB(a, room_a,i){
          document.getElementById("modalBook").style.display = 'block';
-        const bt = document.getElementById('bT');
-        bt.textContent = a[3] ;
+      //  const bt = document.getElementById('bT');
+      //  const ro = document.getElementById('room');
+       // bt.textContent = a[3] ;
+       // ro.textContent = room_a[3];
+        //let conso = document.getElementById('bT').value;
+       // console.log(conso);
+
 
     }
 

@@ -102,11 +102,40 @@ public class BookService {
 
 
     @Transactional
-    public List searchLocation(String bookId, String room) {
+    public List<String> searchLocation(String b, String room) {
 //다익스트라 자바코드를 넣어주세요
 // 만약 자바에서 클래스 여러개 나왔다면 클래스 있는걸로 폴더 만들어서 book 불러온것처럼 불러오기
 //        List<Position> positionList = null;
-        List positionList = null;
-        return positionList;
+        ArrayList<String> bookPath = new ArrayList<String>();
+        int start = 210;
+        int dest = Dijkstra.getLocation(b, room);
+        Dijkstra.setting();
+        Dijkstra.d[start] = 0;
+        Dijkstra.visited[start] = 1;
+        Dijkstra.dijkstra(start);
+        int index = 1;
+        Dijkstra.path[index++] = dest;
+        index = Dijkstra.findPath(start, dest, index);
+        bookPath = Dijkstra.convertCoordinate(Dijkstra.path);
+//        List positionList = null;
+
+        for(String str : bookPath){
+            System.out.println(str);
+        }
+
+        return bookPath;
     }
 }
+
+//        int dest = Dijkstra.getLocation("999", "종합자료실");
+//        int start = 210;
+//        ArrayList<String> coordinateList = new ArrayList<String>();
+//        Dijkstra.setting();
+//        Dijkstra.d[start] = 0;
+//        Dijkstra.visited[start] = 1;
+//        Dijkstra.dijkstra(start);
+//        //int dest = 84;
+//        int index = 1;
+//        Dijkstra.path[index++] = dest;
+//        index = Dijkstra.findPath(start, dest, index);
+//        coordinateList = convertCoordinate(path);
