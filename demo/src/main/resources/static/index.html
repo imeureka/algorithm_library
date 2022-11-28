@@ -10,13 +10,21 @@
         #userBox{
             width: 100%;
             height: 300px;
+            position: relative;
         }
         body{
         background: url("/img/gachon_Back.png") no-repeat center center fixed;
             background-size: cover;
         }
+        #section-retrieval-book{
+            position: absolute;
+            top:0; left: 0; bottom: 0; right: 0;
+            background: rgba(0, 0, 0, 0.0);
+
+        }
+
         button{
-            right: 390px;
+            right: 2%;
             border: none;
             width: 50px;
             position: absolute;
@@ -27,9 +35,10 @@
             box-shadow:-200px 0 0 0 rgba(56, 83, 190, 0.5) inset;
         }
 
-        .formC{
+        #formC{
             display: flex;
             position: relative;
+            z-index: 0;
         }
         .container{
             display: block;
@@ -59,6 +68,7 @@
         }
         .jumbotron{
             position: relative;
+            z-index: -1;
         }
         .iconGachon{
             width: 100px;
@@ -75,11 +85,12 @@
             margin-top: 10px;
             width: 50%;
             border: 2px solid #ced7ff;
+            position: relative;
         }
         .modalBook{
             width: 40%;
-            height: 75%;
-            top: 14%;
+            height: 60%;
+            top: 20%;
             border-radius: 20px;
             transform: translateX(-50%);
             position: absolute;
@@ -139,7 +150,8 @@
     </script>
 </head>
 <body>
-<section id="section-retrieval-book" >
+<section id="section-retrieval-book"  >
+    <div class="background">
 
     <div id="div-retrieval-book" class="container">
         <div class="jumbotron">
@@ -147,7 +159,7 @@
         </div>
 
 
-        <form class="formC">
+        <form class="formC" id="formC">
 <!--            <button class="btn-hover color-4" id="btnB" type="submit" name="keywor" onclick="getUser(); return false;">조회</button>-->
             <div class="search">
                 <input type="text"  class="form-control" id="keyword" placeholder="검색어 입력">
@@ -159,18 +171,20 @@
 
         <div class="modalBook" id="modalBook">
             <div class="header_modal">
-                <img src="/img/xsolid.svg" class="xIcon">
+                <img src="/img/xsolid.svg" class="xIcon" onclick="closeModal()">
             </div>
             <div class="main_modal">
                 <div class="img_main">
                     <img class="bookTitle" src="/img/book_solid.svg">
                 </div>
+
                <div class="explain">
-                   <h1 class="bT" id="bT">813.6 고567ㄴ</h1>
-                   <p class="explain_autor">저자 : 해피 윌슨</p>
-                   <p  class="explain_pub">출판사 : 해피인더 원들</p>
-                   <p  class="explain_yeah">출판년도 : 2001 </p>
-                   <p  class="explain_room" id="room">종합자료실</p>
+                   <h1 class="bT" id="bT"></h1>
+                   <p class="explain_autor" id="bookauther"></p>
+                   <p  class="explain_pub" id="bookPubl"></p>
+                   <p  class="explain_yeah" id="bookYear"> </p>
+                   <p  class="explain_yeah"id="bookidid"> </p>
+                   <p  class="explain_room" id="room"></p>
                </div>
 
             </div>
@@ -179,10 +193,11 @@
 
 
             <div class="location_modal">
-                <button class="forLocation" onclick="location.href='/library.html'">위치 찾기</button>
+                <button class="forLocation" onclick="getUser2()">위치 찾기</button>
             </div>
             <div class="footer_modal"></div>
         </div>
+    </div>
     </div>
 </section>
 <script>
@@ -192,6 +207,10 @@
 
 
     a=new Array();
+    auth = new Array();
+    publ = new Array();
+    yea = new Array();
+    bookd = new Array();
     room_a= new Array();
     let i =0;
     let bookId = document.getElementById('bT').value;
@@ -225,22 +244,21 @@
 
             .then(data =>
                 data.map(book => {
-                    console.log(data)
+                    console.log(data);
                 const name = document.createElement("div");
                     name.className = 'test';
 
-                    for(i;i<150;i++){
-                        name.innerHTML = book.bookTitle + '<br/>' + '저자 : ' +book.auther + ' 출판사 : ' +book.publisher + '<button onclick="modalB(a,room_a,i)">조회</button>';
-                        a.push(book.book_id);
-                        room_a.push(book.room);
-                        i++;
-                        break;
-                    }
+                    name.innerHTML = book.bookTitle + '<br/>' + '저자 : ' +book.auther + ' 출판사 : ' +book.publisher + '<button onclick="modalB(this.id, a,auth,publ,yea,bookd,room_a)" class="btclass">조회</button>';
+                    createId();
+                    a.push(book.bookTitle);
+                    auth.push(book.auther);
+                    publ.push(book.publisher);
+                    yea.push(book.year);
+                    bookd.push(book.book_id);
+                    room_a.push(book.room);
+                        console.log(a);
 
 
-                // a.push(book.auther);
-                // a.push(book.publisher);
-                console.log(a);
                 const userInfo = document.getElementById("userBox");
                 userInfo.appendChild(name);
                     function modalB(){
@@ -251,15 +269,226 @@
                     // userInfo.appendChild(btn);
             })
         )
-            // .then(data => {
-            //     console.log(data);
-            // })
+            .then(data => {
+                console.log(data);
+            })
 
             .catch(error => console.log(error));
     }
 
-    function modalB(a, room_a,i){
+    function modalB(btid, data, auth , pub, yea, bid, broom){
+        console.log(data);
          document.getElementById("modalBook").style.display = 'block';
+        document.getElementById("section-retrieval-book").style.backgroundColor = "rgba(0,0,0,0.5)";
+        document.getElementById("formC").style.zIndex ='-1';
+        document.getElementById("userBox").style.zIndex ='-1';
+         const btt = document.getElementById('bT');
+        const ba = document.getElementById('bookauther');
+        const bp = document.getElementById('bookPubl');
+        const by = document.getElementById('bookYear');
+        const bi = document.getElementById('bookidid');
+        const room = document.getElementById('room');
+         //if 데이터 인덱스값이
+        for(i=0;i<data.length;i++){
+
+            if(parseInt(btid)== i){
+                btt.textContent = data[i];
+                ba.textContent = '저자 : ' + auth[i];
+                bp.textContent = '출판사 : ' + pub[i];
+                by.textContent = '출판년도 : ' + yea[i];
+                bi.textContent =  bid[i];
+                room.textContent = broom[i];
+            }
+
+        }
+         // btt.textContent = data[0];
+         //
+         // room.textContent = data[1];
+    }
+
+    function closeModal(){
+        document.getElementById("modalBook").style.display = 'none';
+        document.getElementById("section-retrieval-book").style.backgroundColor = 'rgba(0,0,0,0.0)';
+        document.getElementById("formC").style.zIndex ='0';
+        document.getElementById("userBox").style.zIndex ='0';
+
+    }
+
+    function createId(){
+        // .getElementsByClassName not .getElementByClass
+        var cls = document.getElementsByClassName("btclass"),
+            // set the stopping point DYNAMICALLY
+            len = cls.length,
+            // start the index at 0;
+            n = 0;
+        for (; n < len; n++) {
+            cls[n].id =(n);
+        }
+    };
+    function getUser2( ){
+        // location.href = "/library.html";
+        const config = {
+            method : "get"
+        };
+        var bidfetch = document.getElementById('bookidid').textContent;
+        console.log('hi'+ bookId);
+        var rod = document.getElementById('room').textContent;
+        fetch("api/search-location/" + bidfetch + "/"  + rod, config)
+            .then(response => response.json())
+            .then(data2 =>{
+                console.log(data2);
+                console.log('hi');
+                console.log(data2[3]);
+                var numOfArray = data2.length;
+                var jbAry = new Array();
+                for(i=0; i<numOfArray; i++){
+                    jbAry[i] = data2[i].split(' ');
+                }
+
+                console.log(jbAry);
+
+                var str =  data2[3].split(' ');
+                console.log(str);
+
+                var row = 19;
+                var col = 21;
+
+                var count = 1;
+                for (var i = 0; i < row.length; i++) {
+                    console.log(row[i].length);
+                    for (var j = 0; j < col.length; j++) {
+                    }
+                }
+                // const table_l = document.createElement("TABLE");
+                // table_l.className = 'test';
+                // const body = document.getElementById('bodyL');
+                // table_l.appendChild(body);
+                // const div = document.getElementById('bodyL');
+                // div.innerHTML = '<table>' ;
+                document.write("<body background='/img/librFinal.PNG' style='background-size: cover'>")
+                document.write("<table border='0px;'>")
+                for (var i = 0; i < row; i++) {
+                    document.write("<tr  class='hello' height='50px'>");
+                    for (var j = 1; j <= col; j++) {
+                        hey2();
+
+                        //print the path
+                        for(k=0;k<jbAry.length;k++){
+                            if(i== parseInt(jbAry[k][0])){
+
+                                if(j==parseInt(jbAry[k][1])+1){
+                                    if(k==0){
+                                        document.write("<img src = '/img/footPrint35_red.svg' style='width: 35px; position: absolute;' >");
+                                    }
+                                    else{
+                                        document.write("<img src = '/img/ftprint.png' style='position: absolute;' >");
+
+                                    }
+                                }
+                            }
+                        }
+
+                        //color the book
+
+
+
+
+                        // if (i == parseInt(str[0])) {
+                        //     if (j == parseInt(str[1]) + 1) {
+                        //         document.write("<img src = '/img/footPrint.svg' width='35px'>")
+                        //
+                        //     }
+                        // }
+                        // for(color=0; color<10;color++){
+                        //     if(j==color)
+                        //     {
+                        //         document.write("<td class ='tdd' width='150px' backgroundColor='red'>");
+                        //     }
+                        //     else{
+                        //         document.write("<td class ='tdd' width='150px'>");
+                        //     }
+                        // }
+
+                        document.write("<td class ='tdd' width='150px'>");
+                        // document.write(i + ',' + j);
+                        count++;
+                    }
+                }
+
+                document.write("</td>")
+                document.write("</tr>")
+                document.write("</table>")
+                hey();
+
+            })
+    }
+
+    function table_make() {
+
+
+        var row = 19;
+        var col = 21;
+
+        var count = 1;
+        for (var i = 0; i < row.length; i++) {
+            console.log(row[i].length);
+            for (var j = 0; j < col.length; j++) {
+            }
+        }
+
+        document.write("<table border='1px;'>")
+        for (var i = 0; i < row; i++) {
+            document.write("<tr  class='hello' height='50px'>");
+            for (var j = 1; j <= col; j++) {
+                hey2();
+                infor(i,j);
+                if (i == 0) {
+                    if (j == 21 + 1) {
+                        document.write("<img src = '/img/xsolid.svg' position='absolute'>")
+
+                    }
+                }
+                document.write("<td class ='tdd' width='50px'>");
+                document.write(i + ',' + j);
+                count++;
+            }
+        }
+
+        document.write("</td>")
+        document.write("</tr>")
+        document.write("</table>")
+        hey();
+
+    }
+
+
+    function hey(){
+
+        // .getElementsByClassName not .getElementByClass
+        var cls = document.getElementsByClassName("tdd"),
+            // set the stopping point DYNAMICALLY
+            len = cls.length,
+            // start the index at 0;
+            n = 0;
+        for (; n < len; n++) {
+            cls[n].id = "tdd_" + (n + 1);
+
+        }
+    };
+
+    function hey2(){
+
+        // .getElementsByClassName not .getElementByClass
+        var cls = document.getElementsByClassName("hello"),
+            // set the stopping point DYNAMICALLY
+            len = cls.length,
+            // start the index at 0;
+            n = 0;
+        for (; n < len; n++) {
+            cls[n].id = "hello_" + (n + 1);
+
+        }
+
     }
 
 </script>
