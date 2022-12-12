@@ -1,216 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<style>
-    bodyL{
-        background: url("/img/gachon_Back.png") no-repeat center center fixed;
-        background-size: cover;
-    }
-    body{
-        background: url("/img/finfinLibr.png") no-repeat center ;
-        background-size: cover;
-        height: 95vh;
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<style>-->
+<!--    bodyL{-->
+<!--        background: url("/img/gachon_Back.png") no-repeat center center fixed;-->
+<!--        background-size: cover;-->
+<!--    }-->
+<!--    body{-->
+<!--        background: url("/img/finfinLibr.png") no-repeat center ;-->
+<!--        background-size: cover;-->
+<!--        height: 95vh;-->
 
-    }
-    .btnTable{
-        position: absolute;
-        right: 25%;
-        top: 80%;
-        border-radius: 25px;
-        width: 163px;
-        height: 40px;
-        background: #f5f6ff;
-    }
-    .btnTable:hover{background-color:#b7c5ff;}
-    .test{
-        background-color: rgba(0,0,0,0);
-        border: 0px;
-    }
-    .tdd{
+<!--    }-->
+<!--    .btnTable{-->
+<!--        position: absolute;-->
+<!--        right: 25%;-->
+<!--        top: 80%;-->
+<!--        border-radius: 25px;-->
+<!--        width: 163px;-->
+<!--        height: 40px;-->
+<!--        background: #f5f6ff;-->
+<!--    }-->
+<!--    .btnTable:hover{background-color:#b7c5ff;}-->
+<!--    .test{-->
+<!--        background-color: rgba(0,0,0,0);-->
+<!--        border: 0px;-->
+<!--    }-->
+<!--    .tdd{-->
 
-        width: 150px;
-    }
-</style>
-<body>
-<button onclick="getUser2()" class="btnTable">최단거리 책 위치 찾기</button>
-<div class="bodyL" id="bodyL">
-    <table id="tableC">
+<!--        width: 150px;-->
+<!--    }-->
+<!--</style>-->
+<!--<body>-->
+<!--<button onclick="getUser2()" class="btnTable">최단거리 책 위치 찾기</button>-->
+<!--<div class="bodyL" id="bodyL">-->
+<!--    <table id="tableC">-->
 
-    </table>
-</div>
+<!--    </table>-->
+<!--</div>-->
 
-<script>
-    function getUser2( ){
-        // location.href = "/library.html";
-        const config = {
-            method : "get"
-        };
-        // var bookId = document.getElementById('bT').value;
-        // console.log('hi'+ bookId);
-        // var rod = document.getElementById('room').value;
-        fetch("api/search-location/" + "853 야766하/"  + "종합자료실", config)
-            .then(response => response.json())
-            .then(data2 =>{
-                console.log(data2);
-                console.log('hi');
-                console.log(data2[3]);
-                var numOfArray = data2.length;
-                var jbAry = new Array();
-                for(i=0; i<numOfArray; i++){
-                     jbAry[i] = data2[i].split(' ');
-                }
+<!--<script>-->
+<!--    function getUser2( ){-->
+<!--        // location.href = "/library.html";-->
+<!--        const config = {-->
+<!--            method : "get"-->
+<!--        };-->
+<!--        // var bookId = document.getElementById('bT').value;-->
+<!--        // console.log('hi'+ bookId);-->
+<!--        // var rod = document.getElementById('room').value;-->
+<!--        fetch("api/search-location/" + "853 야766하/"  + "종합자료실", config)-->
+<!--            .then(response => response.json())-->
+<!--            .then(data2 =>{-->
+<!--                console.log(data2);-->
+<!--                console.log('hi');-->
+<!--                console.log(data2[3]);-->
+<!--                var numOfArray = data2.length;-->
+<!--                var jbAry = new Array();-->
+<!--                for(i=0; i<numOfArray; i++){-->
+<!--                     jbAry[i] = data2[i].split(' ');-->
+<!--                }-->
 
-                console.log(jbAry);
+<!--                console.log(jbAry);-->
 
-               var str =  data2[3].split(' ');
-                console.log(str);
+<!--               var str =  data2[3].split(' ');-->
+<!--                console.log(str);-->
 
-                var row = 19;
-                var col = 21;
+<!--                var row = 19;-->
+<!--                var col = 21;-->
 
-                var count = 1;
-                for (var i = 0; i < row.length; i++) {
-                    console.log(row[i].length);
-                    for (var j = 0; j < col.length; j++) {
-                    }
-                }
-                // const table_l = document.createElement("TABLE");
-                // table_l.className = 'test';
-                // const body = document.getElementById('bodyL');
-                // table_l.appendChild(body);
-                // const div = document.getElementById('bodyL');
-                // div.innerHTML = '<table>' ;
-                document.write("<body background='/img/librFinal.PNG' style='background-size: cover'>")
-                 document.write("<table border='0px;'>")
-                for (var i = 0; i < row; i++) {
-                    document.write("<tr  class='hello' height='50px'>");
-                    for (var j = 1; j <= col; j++) {
-                        hey2();
+<!--                var count = 1;-->
+<!--                for (var i = 0; i < row.length; i++) {-->
+<!--                    console.log(row[i].length);-->
+<!--                    for (var j = 0; j < col.length; j++) {-->
+<!--                    }-->
+<!--                }-->
+<!--                // const table_l = document.createElement("TABLE");-->
+<!--                // table_l.className = 'test';-->
+<!--                // const body = document.getElementById('bodyL');-->
+<!--                // table_l.appendChild(body);-->
+<!--                // const div = document.getElementById('bodyL');-->
+<!--                // div.innerHTML = '<table>' ;-->
+<!--                document.write("<body background='/img/librFinal.PNG' style='background-size: cover'>")-->
+<!--                 document.write("<table border='0px;'>")-->
+<!--                for (var i = 0; i < row; i++) {-->
+<!--                    document.write("<tr  class='hello' height='50px'>");-->
+<!--                    for (var j = 1; j <= col; j++) {-->
+<!--                        hey2();-->
 
-                        //print the path
-                        for(k=0;k<jbAry.length;k++){
-                            if(i== parseInt(jbAry[k][0])){
+<!--                        //print the path-->
+<!--                        for(k=0;k<jbAry.length;k++){-->
+<!--                            if(i== parseInt(jbAry[k][0])){-->
 
-                                if(j==parseInt(jbAry[k][1])+1){
-                                    if(k==0){
-                                        document.write("<img src = '/img/footPrint35_red.svg' style='width: 35px; position: absolute;' >");
-                                    }
-                                    else{
-                                        document.write("<img src = '/img/ftprint.png' style='position: absolute;' >");
+<!--                                if(j==parseInt(jbAry[k][1])+1){-->
+<!--                                    if(k==0){-->
+<!--                                        document.write("<img src = '/img/footPrint35_red.svg' style='width: 35px; position: absolute;' >");-->
+<!--                                    }-->
+<!--                                    else{-->
+<!--                                        document.write("<img src = '/img/ftprint.png' style='position: absolute;' >");-->
 
-                                    }
-                                      }
-                            }
-                        }
+<!--                                    }-->
+<!--                                      }-->
+<!--                            }-->
+<!--                        }-->
 
-                        //color the book
-
-
-
-
-                        // if (i == parseInt(str[0])) {
-                        //     if (j == parseInt(str[1]) + 1) {
-                        //         document.write("<img src = '/img/footPrint.svg' width='35px'>")
-                        //
-                        //     }
-                        // }
-                        // for(color=0; color<10;color++){
-                        //     if(j==color)
-                        //     {
-                        //         document.write("<td class ='tdd' width='150px' backgroundColor='red'>");
-                        //     }
-                        //     else{
-                        //         document.write("<td class ='tdd' width='150px'>");
-                        //     }
-                        // }
-
-                       document.write("<td class ='tdd' width='150px'>");
-                        // document.write(i + ',' + j);
-                        count++;
-                    }
-                }
-
-                document.write("</td>")
-                document.write("</tr>")
-                document.write("</table>")
-                hey();
-
-            })
-    }
-
-    function table_make() {
-
-
-                var row = 19;
-                var col = 21;
-
-                var count = 1;
-                for (var i = 0; i < row.length; i++) {
-                    console.log(row[i].length);
-                    for (var j = 0; j < col.length; j++) {
-                    }
-                }
-
-                document.write("<table border='1px;'>")
-                for (var i = 0; i < row; i++) {
-                    document.write("<tr  class='hello' height='50px'>");
-                    for (var j = 1; j <= col; j++) {
-                        hey2();
-                        infor(i,j);
-                        if (i == 0) {
-                            if (j == 21 + 1) {
-                                document.write("<img src = '/img/xsolid.svg' position='absolute'>")
-
-                            }
-                        }
-                        document.write("<td class ='tdd' width='50px'>");
-                        document.write(i + ',' + j);
-                        count++;
-                    }
-                }
-
-                document.write("</td>")
-                document.write("</tr>")
-                document.write("</table>")
-                hey();
-
-            }
-
-
-function hey(){
-
-        // .getElementsByClassName not .getElementByClass
-        var cls = document.getElementsByClassName("tdd"),
-            // set the stopping point DYNAMICALLY
-            len = cls.length,
-            // start the index at 0;
-            n = 0;
-        for (; n < len; n++) {
-            cls[n].id = "tdd_" + (n + 1);
-
-        }
-    };
-
-    function hey2(){
-
-        // .getElementsByClassName not .getElementByClass
-        var cls = document.getElementsByClassName("hello"),
-            // set the stopping point DYNAMICALLY
-            len = cls.length,
-            // start the index at 0;
-            n = 0;
-        for (; n < len; n++) {
-            cls[n].id = "hello_" + (n + 1);
-
-        }
-
-    }
+<!--                        //color the book-->
 
 
 
-</script>
-</body>
-</html>
+
+<!--                        // if (i == parseInt(str[0])) {-->
+<!--                        //     if (j == parseInt(str[1]) + 1) {-->
+<!--                        //         document.write("<img src = '/img/footPrint.svg' width='35px'>")-->
+<!--                        //-->
+<!--                        //     }-->
+<!--                        // }-->
+<!--                        // for(color=0; color<10;color++){-->
+<!--                        //     if(j==color)-->
+<!--                        //     {-->
+<!--                        //         document.write("<td class ='tdd' width='150px' backgroundColor='red'>");-->
+<!--                        //     }-->
+<!--                        //     else{-->
+<!--                        //         document.write("<td class ='tdd' width='150px'>");-->
+<!--                        //     }-->
+<!--                        // }-->
+
+<!--                       document.write("<td class ='tdd' width='150px'>");-->
+<!--                        // document.write(i + ',' + j);-->
+<!--                        count++;-->
+<!--                    }-->
+<!--                }-->
+
+<!--                document.write("</td>")-->
+<!--                document.write("</tr>")-->
+<!--                document.write("</table>")-->
+<!--                hey();-->
+
+<!--            })-->
+<!--    }-->
+
+<!--    function table_make() {-->
+
+
+<!--                var row = 19;-->
+<!--                var col = 21;-->
+
+<!--                var count = 1;-->
+<!--                for (var i = 0; i < row.length; i++) {-->
+<!--                    console.log(row[i].length);-->
+<!--                    for (var j = 0; j < col.length; j++) {-->
+<!--                    }-->
+<!--                }-->
+
+<!--                document.write("<table border='1px;'>")-->
+<!--                for (var i = 0; i < row; i++) {-->
+<!--                    document.write("<tr  class='hello' height='50px'>");-->
+<!--                    for (var j = 1; j <= col; j++) {-->
+<!--                        hey2();-->
+<!--                        infor(i,j);-->
+<!--                        if (i == 0) {-->
+<!--                            if (j == 21 + 1) {-->
+<!--                                document.write("<img src = '/img/xsolid.svg' position='absolute'>")-->
+
+<!--                            }-->
+<!--                        }-->
+<!--                        document.write("<td class ='tdd' width='50px'>");-->
+<!--                        document.write(i + ',' + j);-->
+<!--                        count++;-->
+<!--                    }-->
+<!--                }-->
+
+<!--                document.write("</td>")-->
+<!--                document.write("</tr>")-->
+<!--                document.write("</table>")-->
+<!--                hey();-->
+
+<!--            }-->
+
+
+<!--function hey(){-->
+
+<!--        // .getElementsByClassName not .getElementByClass-->
+<!--        var cls = document.getElementsByClassName("tdd"),-->
+<!--            // set the stopping point DYNAMICALLY-->
+<!--            len = cls.length,-->
+<!--            // start the index at 0;-->
+<!--            n = 0;-->
+<!--        for (; n < len; n++) {-->
+<!--            cls[n].id = "tdd_" + (n + 1);-->
+
+<!--        }-->
+<!--    };-->
+
+<!--    function hey2(){-->
+
+<!--        // .getElementsByClassName not .getElementByClass-->
+<!--        var cls = document.getElementsByClassName("hello"),-->
+<!--            // set the stopping point DYNAMICALLY-->
+<!--            len = cls.length,-->
+<!--            // start the index at 0;-->
+<!--            n = 0;-->
+<!--        for (; n < len; n++) {-->
+<!--            cls[n].id = "hello_" + (n + 1);-->
+
+<!--        }-->
+
+<!--    }-->
+
+
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

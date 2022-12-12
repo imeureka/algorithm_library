@@ -169,43 +169,9 @@ public class Dijkstra {
             co = String.valueOf(x) + " " + String.valueOf(y);
             bookCoordinate.add(co);
         }
-//        for(int i = 1; i < 31; i++){
-//            if(path)
-//
-//
-//
-//            bookCoordinate.add(co);
-//        }
-        // co = String.valueOf(coor) + " " +
+
 
         return bookCoordinate;
     }
 }
-//    public static void main(String args[]) {
-//
-//        int dest = Dijkstra.getLocation("999", "종합자료실");
-//        int start = 210;
-//        ArrayList<String> coordinateList = new ArrayList<String>();
-//        Dijkstra.setting();
-//        Dijkstra.d[start] = 0;
-//        Dijkstra.visited[start] = 1;
-//        Dijkstra.dijkstra(start);
-//        //int dest = 84;
-//        int index = 1;
-//        Dijkstra.path[index++] = dest;
-//        index = Dijkstra.findPath(start, dest, index);
-//        coordinateList = convertCoordinate(path);
-//        for (int i = 1; i < index; i++) {
-//            System.out.println(Dijkstra.path[i] + " ");
-//        }
-//
-//        for(String coor : coordinateList){
-//            System.out.println(coor);
-//        }
-//
-//        for(int i = 0; i < coordinateList.size(); i++){
-//
-//        }
-//        System.out.println(Dijkstra.d[dest]);
-//    }
-//}
+
